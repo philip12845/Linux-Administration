@@ -39,11 +39,11 @@ Next we need to enable the service on startup so use ```systemctl enable atop```
 
 We also need to enable atop timer on startup for log rotate ```systemctl enable atop-rotate.timer```
 
-Im not sure if atop needs a restart after the configuration change above so its probably best to restart it with ```systemctl restart atop```
+Im not sure if atop needs a restart after the configuration change above so its probably best to restart it with ```systemctl restart atop atop-rotate.timer atop-rotate.service```
 
 ## A one liner for all of this:
 
-```yum install atop -y && sed -i 's/600/60/g' /etc/sysconfig/atop && systemctl enable atop atop-rotate.timer && systemctl restart atop atop-rotate.timer```
+```yum install atop -y && sed -i 's/600/60/g' /etc/sysconfig/atop && systemctl enable atop atop-rotate.timer && systemctl restart atop atop-rotate.timer atop-rotate.service```
 
 ---
 
